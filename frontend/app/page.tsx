@@ -1,101 +1,195 @@
-import Image from "next/image";
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { BarChart3, Building2, DollarSign, FileText, Search, Shield } from "lucide-react"
+import { useState } from "react"
+import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [searchValue, setSearchValue] = useState("")
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // DoD contracts-related placeholders
+  const contractPlaceholders = [
+    "Show me contracts over $10M in California last year",
+    "Which contractors received the most funding in 2023?",
+    "Find missile defense systems contracts",
+    "Search for Navy contracts awarded to small businesses",
+    "Show me aircraft procurement contracts since 2020"
+  ]
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+    console.log(e.target.value)
+  }
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log("Searching for:", searchValue)
+    // Implement actual search functionality here
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <header className="border-b border-muted">
+        <div className="flex h-16 items-center justify-between px-4">
+          <div className="flex items-center gap-2">
+            <Shield className="h-8 w-8 text-primary" />
+            <span className="text-xl font-bold glow text-primary">GovWatch</span>
+          </div>
+          <nav className="flex gap-6">
+            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
+              About
+            </Button>
+            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
+              Data Sources
+            </Button>
+            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
+              API
+            </Button>
+            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
+              Help
+            </Button>
+          </nav>
         </div>
+      </header>
+
+      <main className="flex-1">
+        <section className="hero-pattern border-b border-muted py-20">
+          <div className="px-4">
+            <h1 className="heading-serif mb-2 text-center text-5xl font-normal text-primary">
+              Search DoD Contract Spending
+            </h1>
+            <p className="mb-8 text-center text-lg text-muted-foreground">
+              Ask questions in plain English about Department of Defense contracts and spending
+            </p>
+            <div className="mx-auto flex max-w-2xl gap-2">
+              <div className="w-full">
+                <PlaceholdersAndVanishInput
+                  placeholders={contractPlaceholders}
+                  onChange={handleSearchChange}
+                  onSubmit={handleSearchSubmit}
+                />
+              </div>
+              <Button 
+                className="h-12 px-8 rounded-full" 
+                size="lg"
+                onClick={() => {
+                  if (searchValue) {
+                    handleSearchSubmit({ preventDefault: () => {} } as any)
+                  }
+                }}
+              >
+                <Search className="mr-2 h-5 w-5" />
+                Search
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12">
+          <div className="px-4">
+            <div className="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <Card className="bg-secondary/50 border-muted rounded-2xl">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Total Contracts</CardTitle>
+                  <FileText className="h-4 w-4 text-primary" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-primary">142,384</div>
+                  <p className="text-xs text-muted-foreground">+20.1% from last year</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-secondary/50 border-muted rounded-2xl">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Total Value</CardTitle>
+                  <DollarSign className="h-4 w-4 text-primary" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-primary">$245.6B</div>
+                  <p className="text-xs text-muted-foreground">+12.3% from last year</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-secondary/50 border-muted rounded-2xl">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Active Contractors</CardTitle>
+                  <Building2 className="h-4 w-4 text-primary" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-primary">2,464</div>
+                  <p className="text-xs text-muted-foreground">+4.75% from last year</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-secondary/50 border-muted rounded-2xl">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Average Contract</CardTitle>
+                  <BarChart3 className="h-4 w-4 text-primary" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-primary">$1.72M</div>
+                  <p className="text-xs text-muted-foreground">-3.2% from last year</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="rounded-2xl border border-muted bg-secondary/50 overflow-hidden">
+              <div className="border-b border-muted px-4 py-3">
+                <h2 className="font-semibold text-primary">Recent Large Contracts</h2>
+              </div>
+              <Table>
+                <TableHeader>
+                  <TableRow className="hover:bg-secondary/80">
+                    <TableHead className="text-muted-foreground">Contractor</TableHead>
+                    <TableHead className="text-muted-foreground">Description</TableHead>
+                    <TableHead className="text-muted-foreground">Date</TableHead>
+                    <TableHead className="text-right text-muted-foreground">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow className="hover:bg-secondary/80">
+                    <TableCell className="font-medium text-primary">Lockheed Martin Corp.</TableCell>
+                    <TableCell>F-35 Lightning II Fighter Aircraft</TableCell>
+                    <TableCell>2024-02-15</TableCell>
+                    <TableCell className="text-right">$712M</TableCell>
+                  </TableRow>
+                  <TableRow className="hover:bg-secondary/80">
+                    <TableCell className="font-medium text-primary">Boeing Defense</TableCell>
+                    <TableCell>CH-47F Chinook Helicopters</TableCell>
+                    <TableCell>2024-02-12</TableCell>
+                    <TableCell className="text-right">$543M</TableCell>
+                  </TableRow>
+                  <TableRow className="hover:bg-secondary/80">
+                    <TableCell className="font-medium text-primary">Raytheon Technologies</TableCell>
+                    <TableCell>Missile Defense Systems</TableCell>
+                    <TableCell>2024-02-10</TableCell>
+                    <TableCell className="text-right">$489M</TableCell>
+                  </TableRow>
+                  <TableRow className="hover:bg-secondary/80">
+                    <TableCell className="font-medium text-primary">General Dynamics</TableCell>
+                    <TableCell>Combat Vehicle Upgrades</TableCell>
+                    <TableCell>2024-02-08</TableCell>
+                    <TableCell className="text-right">$367M</TableCell>
+                  </TableRow>
+                  <TableRow className="hover:bg-secondary/80">
+                    <TableCell className="font-medium text-primary">Northrop Grumman</TableCell>
+                    <TableCell>Surveillance Systems</TableCell>
+                    <TableCell>2024-02-05</TableCell>
+                    <TableCell className="text-right">$298M</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="border-t border-muted py-6">
+        <div className="px-4 text-center text-sm text-muted-foreground">
+          GovWatch - Making Department of Defense spending transparent and accessible.
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
