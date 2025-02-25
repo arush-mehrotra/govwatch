@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import logging
 from app.services.scraper import ContractScraper
-from app.services.embeddings import process_contract_embeddings as generate_and_store_embeddings
+from app.services.embeddings import generate_embeddings, search_with_gemini
 
 # Optional: Import your vector embedding service
 # from app.services.embeddings import generate_embeddings
@@ -45,7 +45,7 @@ async def process_contract_embeddings():
         # Format dates for URL
         start_date_str = start_date.strftime("%Y-%m-%d")
         end_date_str = end_date.strftime("%Y-%m-%d")
-        
+
         # Construct URL
         url = f"https://www.defense.gov/News/Contracts/StartDate/{start_date_str}/EndDate/{end_date_str}/"
 
@@ -131,7 +131,7 @@ async def process_contract_embeddings():
         # Generate and store embeddings
         if contract_data:
             try:
-                embedding_stats = generate_and_store_embeddings(contract_data)
+                embedding_stats = await generate_embeddings(contract_data)
                 logger.info(f"Embedding stats: {embedding_stats}")
             except Exception as e:
                 logger.error(f"Error generating embeddings: {str(e)}")
@@ -165,3 +165,25 @@ async def test_process_embeddings():
     """
     result = await process_contract_embeddings()
     return result
+
+@router.post("/search")
+async def search_contracts(query: str):
+    """
+    Search for contracts using a natural language query
+    
+    Args:
+        query: The search query
+        
+    Returns:
+        Dict: Response containing the answer and sources
+    """
+    try:
+        if not query or len(query.strip()) < 3:
+            raise HTTPException(status_code=400, detail="Query must be at least 3 characters long")
+        
+        result = await search_with_gemini(query)
+        return result
+    
+    except Exception as e:
+        logger.error(f"Error searching contracts: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

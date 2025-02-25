@@ -7,6 +7,7 @@ from logging.handlers import RotatingFileHandler
 load_dotenv()
 
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Create logs directory if it doesn't exist
 os.makedirs("logs", exist_ok=True)
