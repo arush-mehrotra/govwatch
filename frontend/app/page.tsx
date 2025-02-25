@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="border-b border-muted">
-        <div className="flex h-16 items-center justify-between px-4">
+        <div className="flex h-16 items-center justify-between px-8">
           <div className="flex items-center gap-2">
             <Shield className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold glow text-primary">GovWatch</span>
@@ -42,22 +42,13 @@ export default function Home() {
             <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
               About
             </Button>
-            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
-              Data Sources
-            </Button>
-            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
-              API
-            </Button>
-            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
-              Help
-            </Button>
           </nav>
         </div>
       </header>
 
       <main className="flex-1">
         <section className="hero-pattern border-b border-muted py-20">
-          <div className="px-4">
+          <div className="px-8">
             <h1 className="heading-serif mb-2 text-center text-5xl font-normal text-primary">
               Search DoD Contract Spending
             </h1>
@@ -72,24 +63,12 @@ export default function Home() {
                   onSubmit={handleSearchSubmit}
                 />
               </div>
-              <Button 
-                className="h-12 px-8 rounded-full" 
-                size="lg"
-                onClick={() => {
-                  if (searchValue) {
-                    handleSearchSubmit({ preventDefault: () => {} } as any)
-                  }
-                }}
-              >
-                <Search className="mr-2 h-5 w-5" />
-                Search
-              </Button>
             </div>
           </div>
         </section>
 
         <section className="py-12">
-          <div className="px-4">
+          <div className="px-8">
             <div className="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <Card className="bg-secondary/50 border-muted rounded-2xl">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -134,7 +113,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-2xl border border-muted bg-secondary/50 overflow-hidden">
-              <div className="border-b border-muted px-4 py-3">
+              <div className="border-b border-muted px-8 py-3">
                 <h2 className="font-semibold text-primary">Recent Large Contracts</h2>
               </div>
               <Table>
@@ -185,7 +164,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-muted py-6">
-        <div className="px-4 text-center text-sm text-muted-foreground">
+        <div className="px-8 text-center text-sm text-muted-foreground">
           GovWatch - Making Department of Defense spending transparent and accessible.
         </div>
       </footer>
