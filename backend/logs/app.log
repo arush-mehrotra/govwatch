@@ -109,3 +109,88 @@
 2025-02-25 13:21:17,672 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 22, "failed_embeddings": 0, "total_sections": 22, "batches_processed": 22}
 2025-02-25 13:21:17,672 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 22, 'failed_embeddings': 0, 'total_sections': 22, 'batches_processed': 22}
 2025-02-25 13:21:17,672 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings
+2025-02-25 13:32:07,925 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-02-18/EndDate/2025-02-24/ for embeddings
+2025-02-25 13:32:08,214 - app.routes.contracts - INFO - Processing 5 contracts for embeddings
+2025-02-25 13:32:08,299 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:32:08,373 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:32:08,443 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:32:08,515 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:32:08,611 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:32:08,791 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:32:08,791 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:32:08,791 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:32:08,791 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:32:08,791 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:32:13,272 - app.services.embeddings - INFO - Upserted 20 vectors to namespace 'contracts'
+2025-02-25 13:32:13,750 - app.services.embeddings - INFO - Upserted 2 vectors to namespace 'contracts'
+2025-02-25 13:32:13,750 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 22, "failed_embeddings": 0, "total_sections": 22, "batches_processed": 2}
+2025-02-25 13:32:13,751 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 22, 'failed_embeddings': 0, 'total_sections': 22, 'batches_processed': 2}
+2025-02-25 13:32:13,751 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings
+2025-02-25 13:33:56,902 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-02-11/EndDate/2025-02-17/ for embeddings
+2025-02-25 13:34:01,837 - app.routes.contracts - INFO - Processing 4 contracts for embeddings
+2025-02-25 13:34:01,913 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4068227/
+2025-02-25 13:34:02,014 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4066078/
+2025-02-25 13:34:02,082 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4064292/
+2025-02-25 13:34:02,157 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4063099/
+2025-02-25 13:34:02,426 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4068227/
+2025-02-25 13:34:02,426 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4066078/
+2025-02-25 13:34:02,426 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4064292/
+2025-02-25 13:34:02,426 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4063099/
+2025-02-25 13:34:05,242 - app.services.embeddings - INFO - Upserted 15 vectors to namespace 'contracts'
+2025-02-25 13:34:05,243 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 4, "successful_embeddings": 15, "failed_embeddings": 0, "total_sections": 15, "batches_processed": 1}
+2025-02-25 13:34:05,245 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 4, 'successful_embeddings': 15, 'failed_embeddings': 0, 'total_sections': 15, 'batches_processed': 1}
+2025-02-25 13:34:05,245 - app.routes.contracts - INFO - Completed processing 4 contracts for embeddings
+2025-02-25 13:34:44,277 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-02-04/EndDate/2025-02-10/ for embeddings
+2025-02-25 13:34:46,555 - app.routes.contracts - INFO - Processing 5 contracts for embeddings
+2025-02-25 13:34:46,650 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4061785/
+2025-02-25 13:34:46,782 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4060359/
+2025-02-25 13:34:46,877 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4056671/
+2025-02-25 13:34:46,950 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4055241/
+2025-02-25 13:34:47,020 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4053575/
+2025-02-25 13:34:48,269 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4061785/
+2025-02-25 13:34:48,269 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4060359/
+2025-02-25 13:34:48,269 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4056671/
+2025-02-25 13:34:48,269 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4055241/
+2025-02-25 13:34:48,270 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4053575/
+2025-02-25 13:34:50,932 - app.services.embeddings - INFO - Upserted 14 vectors to namespace 'contracts'
+2025-02-25 13:34:50,932 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 14, "failed_embeddings": 0, "total_sections": 14, "batches_processed": 1}
+2025-02-25 13:34:50,933 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 14, 'failed_embeddings': 0, 'total_sections': 14, 'batches_processed': 1}
+2025-02-25 13:34:50,933 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings
+2025-02-25 13:35:13,432 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-01-31/EndDate/2025-02-03/ for embeddings
+2025-02-25 13:35:14,526 - app.routes.contracts - INFO - Processing 2 contracts for embeddings
+2025-02-25 13:35:14,684 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4051668/
+2025-02-25 13:35:14,760 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4049800/
+2025-02-25 13:35:14,903 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4051668/
+2025-02-25 13:35:14,904 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4049800/
+2025-02-25 13:35:16,595 - app.services.embeddings - INFO - Upserted 9 vectors to namespace 'contracts'
+2025-02-25 13:35:16,596 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 2, "successful_embeddings": 9, "failed_embeddings": 0, "total_sections": 9, "batches_processed": 1}
+2025-02-25 13:35:16,597 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 2, 'successful_embeddings': 9, 'failed_embeddings': 0, 'total_sections': 9, 'batches_processed': 1}
+2025-02-25 13:35:16,597 - app.routes.contracts - INFO - Completed processing 2 contracts for embeddings
+2025-02-25 13:35:30,084 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-01-24/EndDate/2025-01-30/ for embeddings
+2025-02-25 13:35:31,006 - app.routes.contracts - INFO - Processing 5 contracts for embeddings
+2025-02-25 13:35:31,114 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4048633/
+2025-02-25 13:35:31,297 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4047048/
+2025-02-25 13:35:31,401 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4044928/
+2025-02-25 13:35:31,505 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4042540/
+2025-02-25 13:35:31,584 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4040498/
+2025-02-25 13:35:31,722 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4048633/
+2025-02-25 13:35:31,722 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4047048/
+2025-02-25 13:35:31,722 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4044928/
+2025-02-25 13:35:31,723 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4042540/
+2025-02-25 13:35:31,723 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4040498/
+2025-02-25 13:35:35,608 - app.services.embeddings - INFO - Upserted 20 vectors to namespace 'contracts'
+2025-02-25 13:35:35,609 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 20, "failed_embeddings": 0, "total_sections": 20, "batches_processed": 1}
+2025-02-25 13:35:35,610 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 20, 'failed_embeddings': 0, 'total_sections': 20, 'batches_processed': 1}
+2025-02-25 13:35:35,610 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings
+2025-02-25 13:35:49,819 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-01-20/EndDate/2025-01-23/ for embeddings
+2025-02-25 13:35:50,672 - app.routes.contracts - INFO - Processing 3 contracts for embeddings
+2025-02-25 13:35:50,771 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4039547/
+2025-02-25 13:35:50,847 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4037103/
+2025-02-25 13:35:50,919 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4035485/
+2025-02-25 13:35:51,081 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4039547/
+2025-02-25 13:35:51,081 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4037103/
+2025-02-25 13:35:51,081 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4035485/
+2025-02-25 13:35:52,732 - app.services.embeddings - INFO - Upserted 8 vectors to namespace 'contracts'
+2025-02-25 13:35:52,732 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 3, "successful_embeddings": 8, "failed_embeddings": 0, "total_sections": 8, "batches_processed": 1}
+2025-02-25 13:35:52,732 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 3, 'successful_embeddings': 8, 'failed_embeddings': 0, 'total_sections': 8, 'batches_processed': 1}
+2025-02-25 13:35:52,732 - app.routes.contracts - INFO - Completed processing 3 contracts for embeddings

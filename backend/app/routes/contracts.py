@@ -45,7 +45,7 @@ async def process_contract_embeddings():
         # Format dates for URL
         start_date_str = start_date.strftime("%Y-%m-%d")
         end_date_str = end_date.strftime("%Y-%m-%d")
-        
+
         # Construct URL
         url = f"https://www.defense.gov/News/Contracts/StartDate/{start_date_str}/EndDate/{end_date_str}/"
 

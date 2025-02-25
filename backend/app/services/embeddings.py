@@ -69,6 +69,7 @@ async def generate_gemini_embedding(text: str) -> List[float]:
 async def generate_embeddings(contract_data: List[Dict[str, Any]]):
     """
     Process contract data, generate embeddings using Gemini, and upsert to Pinecone
+    All vectors will be stored in a single namespace
     
     Args:
         contract_data: List of contract dictionaries with date, sections, and URL
@@ -88,6 +89,9 @@ async def generate_embeddings(contract_data: List[Dict[str, Any]]):
             "batches_processed": 0
         }
         
+        # Collect all sections across all contracts
+        all_sections = []
+        
         # Process each contract
         for contract in contract_data:
             contract_url = contract["url"]
@@ -95,9 +99,6 @@ async def generate_embeddings(contract_data: List[Dict[str, Any]]):
             sections = contract["sections"]
             
             logger.info(f"Processing contract: {contract_url}")
-            
-            # Organize sections by namespace for batch processing
-            namespace_sections = {}
             
             # Process each section
             for section_name, section_text in sections.items():
@@ -110,11 +111,8 @@ async def generate_embeddings(contract_data: List[Dict[str, Any]]):
                 article_id = contract_url.split("/")[-2] if contract_url.split("/")[-1] == "" else contract_url.split("/")[-1]
                 vector_id = f"{article_id}_{section_name.replace(' ', '_')}"
                 
-                # Add to namespace collection
-                if section_name not in namespace_sections:
-                    namespace_sections[section_name] = []
-                
-                namespace_sections[section_name].append({
+                # Add to collection
+                all_sections.append({
                     "id": vector_id,
                     "text": section_text,
                     "metadata": {
@@ -126,49 +124,49 @@ async def generate_embeddings(contract_data: List[Dict[str, Any]]):
                 })
                 
                 stats["total_sections"] += 1
+        
+        # Process all sections in batches
+        for i in range(0, len(all_sections), BATCH_SIZE):
+            batch = all_sections[i:i+BATCH_SIZE]
             
-            # Process each namespace in batches
-            for namespace, sections_list in namespace_sections.items():
-                # Process in batches
-                for i in range(0, len(sections_list), BATCH_SIZE):
-                    batch = sections_list[i:i+BATCH_SIZE]
-                    
+            try:
+                # Prepare vectors for upsert
+                vectors_to_upsert = []
+                
+                # Generate embeddings for each section in the batch
+                for section in batch:
                     try:
-                        # Prepare vectors for upsert
-                        vectors_to_upsert = []
+                        # Generate embedding using Gemini
+                        embedding = await generate_gemini_embedding(section["text"])
                         
-                        # Generate embeddings for each section in the batch
-                        for section in batch:
-                            try:
-                                # Generate embedding using Gemini
-                                embedding = await generate_gemini_embedding(section["text"])
-                                
-                                # Add to upsert list
-                                vectors_to_upsert.append({
-                                    "id": section["id"],
-                                    "values": embedding,
-                                    "metadata": section["metadata"]
-                                })
-                                
-                                stats["successful_embeddings"] += 1
-                                
-                            except Exception as e:
-                                logger.error(f"Error generating embedding for section {section['id']}: {str(e)}")
-                                stats["failed_embeddings"] += 1
+                        # Add to upsert list
+                        vectors_to_upsert.append({
+                            "id": section["id"],
+                            "values": embedding,
+                            "metadata": section["metadata"]
+                        })
                         
-                        # Upsert vectors to Pinecone
-                        if vectors_to_upsert:
-                            index.upsert(
-                                vectors=vectors_to_upsert,
-                                namespace=namespace
-                            )
-                            logger.info(f"Upserted {len(vectors_to_upsert)} vectors to namespace '{namespace}'")
-                        
-                        stats["batches_processed"] += 1
+                        stats["successful_embeddings"] += 1
                         
                     except Exception as e:
-                        logger.error(f"Error processing batch for namespace {namespace}: {str(e)}")
-                        stats["failed_embeddings"] += len(batch)
+                        logger.error(f"Error generating embedding for section {section['id']}: {str(e)}")
+                        stats["failed_embeddings"] += 1
+                
+                # Upsert vectors to Pinecone (using a single namespace)
+                if vectors_to_upsert:
+                    # Use a single namespace for all vectors
+                    # You can use an empty string or a specific namespace name
+                    index.upsert(
+                        vectors=vectors_to_upsert,
+                        namespace="contracts"  # Single namespace for all contracts
+                    )
+                    logger.info(f"Upserted {len(vectors_to_upsert)} vectors to namespace 'contracts'")
+                
+                stats["batches_processed"] += 1
+                
+            except Exception as e:
+                logger.error(f"Error processing batch {i//BATCH_SIZE + 1}: {str(e)}")
+                stats["failed_embeddings"] += len(batch)
         
         logger.info(f"Completed embedding process. Stats: {json.dumps(stats)}")
         return stats
