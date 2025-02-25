@@ -1,0 +1,111 @@
+2025-02-25 13:19:26,121 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-02-18/EndDate/2025-02-24/ for embeddings
+2025-02-25 13:19:26,769 - app.routes.contracts - INFO - Processing 5 contracts for embeddings
+2025-02-25 13:19:26,923 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:19:27,226 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:19:27,312 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:19:27,423 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:19:27,737 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:19:27,970 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:19:28,387 - app.services.embeddings - ERROR - Error generating embedding for section 4076032_AIR_FORCE: test
+2025-02-25 13:19:28,679 - app.services.embeddings - ERROR - Error generating embedding for section 4076032_NAVY: test
+2025-02-25 13:19:28,859 - app.services.embeddings - ERROR - Error generating embedding for section 4076032_ARMY: test
+2025-02-25 13:19:29,025 - app.services.embeddings - ERROR - Error generating embedding for section 4076032_UNIFORMED_SERVICES_UNIVERSITY_OF_THE_HEALTH_SCIENCES: test
+2025-02-25 13:19:29,393 - app.services.embeddings - ERROR - Error generating embedding for section 4076032_DEFENSE_HEALTH_AGENCY: test
+2025-02-25 13:19:29,393 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:19:29,551 - app.services.embeddings - ERROR - Error generating embedding for section 4073782_AIR_FORCE: test
+2025-02-25 13:19:29,740 - app.services.embeddings - ERROR - Error generating embedding for section 4073782_NAVY: test
+2025-02-25 13:19:29,920 - app.services.embeddings - ERROR - Error generating embedding for section 4073782_ARMY: test
+2025-02-25 13:19:30,100 - app.services.embeddings - ERROR - Error generating embedding for section 4073782_UNIFORMED_SERVICES_UNIVERSITY_OF_THE_HEALTH_SCIENCES: test
+2025-02-25 13:19:30,270 - app.services.embeddings - ERROR - Error generating embedding for section 4073782_DEFENSE_HEALTH_AGENCY: test
+2025-02-25 13:19:30,270 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:19:30,460 - app.services.embeddings - ERROR - Error generating embedding for section 4072252_NAVY: test
+2025-02-25 13:19:30,637 - app.services.embeddings - ERROR - Error generating embedding for section 4072252_AIR_FORCE: test
+2025-02-25 13:19:30,807 - app.services.embeddings - ERROR - Error generating embedding for section 4072252_ARMY: test
+2025-02-25 13:19:30,962 - app.services.embeddings - ERROR - Error generating embedding for section 4072252_DEFENSE_LOGISTICS_AGENCY: test
+2025-02-25 13:19:30,962 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:19:31,139 - app.services.embeddings - ERROR - Error generating embedding for section 4070807_ARMY: test
+2025-02-25 13:19:31,317 - app.services.embeddings - ERROR - Error generating embedding for section 4070807_NAVY: test
+2025-02-25 13:19:31,495 - app.services.embeddings - ERROR - Error generating embedding for section 4070807_MISSILE_DEFENSE_AGENCY: test
+2025-02-25 13:19:31,675 - app.services.embeddings - ERROR - Error generating embedding for section 4070807_WASHINGTON_HEADQUARTERS_SERVICES: test
+2025-02-25 13:19:31,860 - app.services.embeddings - ERROR - Error generating embedding for section 4070807_DEFENSE_LOGISTICS_AGENCY: test
+2025-02-25 13:19:31,860 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:19:32,019 - app.services.embeddings - ERROR - Error generating embedding for section 4069639_ARMY: test
+2025-02-25 13:19:32,192 - app.services.embeddings - ERROR - Error generating embedding for section 4069639_NAVY: test
+2025-02-25 13:19:32,358 - app.services.embeddings - ERROR - Error generating embedding for section 4069639_AIR_FORCE: test
+2025-02-25 13:19:32,359 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 0, "failed_embeddings": 22, "total_sections": 22, "batches_processed": 22}
+2025-02-25 13:19:32,362 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 0, 'failed_embeddings': 22, 'total_sections': 22, 'batches_processed': 22}
+2025-02-25 13:19:32,362 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings
+2025-02-25 13:20:24,550 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-02-18/EndDate/2025-02-24/ for embeddings
+2025-02-25 13:20:24,720 - app.routes.contracts - INFO - Processing 5 contracts for embeddings
+2025-02-25 13:20:24,815 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:20:25,048 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:20:25,220 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:20:25,322 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:20:25,399 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:20:25,622 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:20:26,010 - app.services.embeddings - ERROR - Error processing batch for namespace AIR FORCE: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:26.006412-05:00"}
+2025-02-25 13:20:26,251 - app.services.embeddings - ERROR - Error processing batch for namespace NAVY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:26.251096-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:26,489 - app.services.embeddings - ERROR - Error processing batch for namespace ARMY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:26.488871-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:26,689 - app.services.embeddings - ERROR - Error processing batch for namespace UNIFORMED SERVICES UNIVERSITY OF THE HEALTH SCIENCES: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:26.689071-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:26,874 - app.services.embeddings - ERROR - Error processing batch for namespace DEFENSE HEALTH AGENCY: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:26.874251-05:00"}
+2025-02-25 13:20:26,875 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:20:27,065 - app.services.embeddings - ERROR - Error processing batch for namespace AIR FORCE: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:27.065294-05:00"}
+2025-02-25 13:20:27,241 - app.services.embeddings - ERROR - Error processing batch for namespace NAVY: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:27.241066-05:00"}
+2025-02-25 13:20:27,414 - app.services.embeddings - ERROR - Error processing batch for namespace ARMY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:27.414272-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:27,604 - app.services.embeddings - ERROR - Error processing batch for namespace UNIFORMED SERVICES UNIVERSITY OF THE HEALTH SCIENCES: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:27.60446-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:27,779 - app.services.embeddings - ERROR - Error processing batch for namespace DEFENSE HEALTH AGENCY: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:27.778564-05:00"}
+2025-02-25 13:20:27,779 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:20:27,959 - app.services.embeddings - ERROR - Error processing batch for namespace NAVY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:27.958668-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:28,136 - app.services.embeddings - ERROR - Error processing batch for namespace AIR FORCE: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:28.136257-05:00"}
+2025-02-25 13:20:28,312 - app.services.embeddings - ERROR - Error processing batch for namespace ARMY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:28.311401-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:28,513 - app.services.embeddings - ERROR - Error processing batch for namespace DEFENSE LOGISTICS AGENCY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:28.513124-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:28,514 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:20:28,690 - app.services.embeddings - ERROR - Error processing batch for namespace ARMY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:28.690542-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:28,868 - app.services.embeddings - ERROR - Error processing batch for namespace NAVY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:28.867551-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:29,069 - app.services.embeddings - ERROR - Error processing batch for namespace MISSILE DEFENSE AGENCY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:29.069189-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:29,352 - app.services.embeddings - ERROR - Error processing batch for namespace WASHINGTON HEADQUARTERS SERVICES: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:29.352235-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:29,523 - app.services.embeddings - ERROR - Error processing batch for namespace DEFENSE LOGISTICS AGENCY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:29.523553-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:29,523 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:20:29,692 - app.services.embeddings - ERROR - Error processing batch for namespace ARMY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:29.691783-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:29,861 - app.services.embeddings - ERROR - Error processing batch for namespace NAVY: UNKNOWN:Error received from peer  {created_time:"2025-02-25T13:20:29.861181-05:00", grpc_status:3, grpc_message:"Vector dimension 768 does not match the dimension of the index 1536"}
+2025-02-25 13:20:30,037 - app.services.embeddings - ERROR - Error processing batch for namespace AIR FORCE: UNKNOWN:Error received from peer  {grpc_message:"Vector dimension 768 does not match the dimension of the index 1536", grpc_status:3, created_time:"2025-02-25T13:20:30.036555-05:00"}
+2025-02-25 13:20:30,038 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 22, "failed_embeddings": 22, "total_sections": 22, "batches_processed": 0}
+2025-02-25 13:20:30,038 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 22, 'failed_embeddings': 22, 'total_sections': 22, 'batches_processed': 0}
+2025-02-25 13:20:30,038 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings
+2025-02-25 13:21:11,016 - app.routes.contracts - INFO - Processing contracts from https://www.defense.gov/News/Contracts/StartDate/2025-02-18/EndDate/2025-02-24/ for embeddings
+2025-02-25 13:21:11,180 - app.routes.contracts - INFO - Processing 5 contracts for embeddings
+2025-02-25 13:21:11,260 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:21:11,336 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:21:11,539 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:21:11,810 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:21:11,883 - app.routes.contracts - INFO - Successfully processed contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:21:12,038 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4076032/
+2025-02-25 13:21:12,407 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'AIR FORCE'
+2025-02-25 13:21:12,713 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'NAVY'
+2025-02-25 13:21:13,050 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'ARMY'
+2025-02-25 13:21:13,297 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'UNIFORMED SERVICES UNIVERSITY OF THE HEALTH SCIENCES'
+2025-02-25 13:21:13,511 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'DEFENSE HEALTH AGENCY'
+2025-02-25 13:21:13,511 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4073782/
+2025-02-25 13:21:13,754 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'AIR FORCE'
+2025-02-25 13:21:13,982 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'NAVY'
+2025-02-25 13:21:14,254 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'ARMY'
+2025-02-25 13:21:14,464 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'UNIFORMED SERVICES UNIVERSITY OF THE HEALTH SCIENCES'
+2025-02-25 13:21:14,672 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'DEFENSE HEALTH AGENCY'
+2025-02-25 13:21:14,673 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4072252/
+2025-02-25 13:21:14,910 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'NAVY'
+2025-02-25 13:21:15,118 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'AIR FORCE'
+2025-02-25 13:21:15,394 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'ARMY'
+2025-02-25 13:21:15,624 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'DEFENSE LOGISTICS AGENCY'
+2025-02-25 13:21:15,624 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4070807/
+2025-02-25 13:21:15,892 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'ARMY'
+2025-02-25 13:21:16,119 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'NAVY'
+2025-02-25 13:21:16,413 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'MISSILE DEFENSE AGENCY'
+2025-02-25 13:21:16,669 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'WASHINGTON HEADQUARTERS SERVICES'
+2025-02-25 13:21:16,894 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'DEFENSE LOGISTICS AGENCY'
+2025-02-25 13:21:16,894 - app.services.embeddings - INFO - Processing contract: https://www.defense.gov/News/Contracts/Contract/Article/4069639/
+2025-02-25 13:21:17,132 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'ARMY'
+2025-02-25 13:21:17,438 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'NAVY'
+2025-02-25 13:21:17,671 - app.services.embeddings - INFO - Upserted 1 vectors to namespace 'AIR FORCE'
+2025-02-25 13:21:17,672 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 5, "successful_embeddings": 22, "failed_embeddings": 0, "total_sections": 22, "batches_processed": 22}
+2025-02-25 13:21:17,672 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 5, 'successful_embeddings': 22, 'failed_embeddings': 0, 'total_sections': 22, 'batches_processed': 22}
+2025-02-25 13:21:17,672 - app.routes.contracts - INFO - Completed processing 5 contracts for embeddings

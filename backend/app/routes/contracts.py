@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import logging
 from app.services.scraper import ContractScraper
-from app.services.embeddings import process_contract_embeddings as generate_and_store_embeddings
+from app.services.embeddings import generate_embeddings
 
 # Optional: Import your vector embedding service
 # from app.services.embeddings import generate_embeddings
@@ -131,7 +131,7 @@ async def process_contract_embeddings():
         # Generate and store embeddings
         if contract_data:
             try:
-                embedding_stats = generate_and_store_embeddings(contract_data)
+                embedding_stats = await generate_embeddings(contract_data)
                 logger.info(f"Embedding stats: {embedding_stats}")
             except Exception as e:
                 logger.error(f"Error generating embeddings: {str(e)}")
