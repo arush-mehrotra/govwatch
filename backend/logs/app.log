@@ -194,3 +194,11 @@
 2025-02-25 13:35:52,732 - app.services.embeddings - INFO - Completed embedding process. Stats: {"total_contracts": 3, "successful_embeddings": 8, "failed_embeddings": 0, "total_sections": 8, "batches_processed": 1}
 2025-02-25 13:35:52,732 - app.routes.contracts - INFO - Embedding stats: {'total_contracts': 3, 'successful_embeddings': 8, 'failed_embeddings': 0, 'total_sections': 8, 'batches_processed': 1}
 2025-02-25 13:35:52,732 - app.routes.contracts - INFO - Completed processing 3 contracts for embeddings
+2025-02-25 13:47:56,253 - app.services.embeddings - ERROR - Error in search_with_gemini: module 'google.genai' has no attribute 'GenerativeModel'
+2025-02-25 13:47:56,255 - app.routes.contracts - ERROR - Error searching contracts: module 'google.genai' has no attribute 'GenerativeModel'
+2025-02-25 13:49:31,055 - app.services.embeddings - ERROR - Error in search_with_gemini: 'Client' object has no attribute 'generate_content'
+2025-02-25 13:49:31,055 - app.routes.contracts - ERROR - Error searching contracts: 'Client' object has no attribute 'generate_content'
+2025-02-25 13:50:00,980 - app.services.embeddings - ERROR - Error in search_with_gemini: Models.generate_content() got an unexpected keyword argument 'content'
+2025-02-25 13:50:00,981 - app.routes.contracts - ERROR - Error searching contracts: Models.generate_content() got an unexpected keyword argument 'content'
+2025-02-25 13:50:10,822 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-02-25 13:50:12,104 - google_genai.models - INFO - AFC remote call 1 is done.

@@ -174,3 +174,113 @@ async def generate_embeddings(contract_data: List[Dict[str, Any]]):
     except Exception as e:
         logger.error(f"Error in generate_embeddings: {str(e)}")
         raise
+
+async def search_with_gemini(query: str, top_k: int = 5):
+    """
+    Search for contracts using a natural language query and generate a response using Gemini
+    
+    Args:
+        query: The natural language search query
+        top_k: Number of results to retrieve from Pinecone
+        
+    Returns:
+        Dict: Response containing the answer and sources
+    """
+    try:
+        # Initialize Pinecone
+        index = initialize_pinecone()
+        
+        # Generate embedding for the query using Gemini
+        query_embedding = await generate_gemini_embedding(query)
+        
+        # Search in Pinecone
+        search_response = index.query(
+            vector=query_embedding,
+            top_k=top_k,
+            namespace="contracts",  # Using the single namespace we defined
+            include_metadata=True
+        )
+        
+        # Extract relevant context from search results
+        contexts = []
+        sources = []
+        
+        for match in search_response.matches:
+            # Add the text as context
+            context_text = match.metadata.get("text", "")
+            if context_text:
+                contexts.append(context_text)
+            
+            # Add source information
+            sources.append({
+                "score": match.score,
+                "contract_url": match.metadata.get("contract_url", ""),
+                "date": match.metadata.get("date", ""),
+                "section": match.metadata.get("section", "")
+            })
+        
+        # If no contexts found, return early
+        if not contexts:
+            return {
+                "answer": "I couldn't find any relevant information about your query in the contracts database.",
+                "sources": []
+            }
+        
+        # Combine contexts into a single string
+        combined_context = "\n\n".join(contexts)
+        
+        # Prepare prompt for Gemini
+        prompt = f"""
+        You are an AI assistant specialized in analyzing Department of Defense contracts.
+        
+        USER QUERY: {query}
+        
+        RELEVANT CONTRACT INFORMATION:
+        {combined_context}
+        
+        Based ONLY on the information provided above, please answer the user's query.
+        If the information doesn't contain an answer to the query, say so clearly.
+        Include specific details from the contracts when relevant.
+        """
+        
+        # Generate response using Gemini
+        generation_config = {
+            "temperature": 0.2,
+            "top_p": 0.8,
+            "top_k": 40,
+            "max_output_tokens": 1024,
+        }
+        
+        safety_settings = [
+            {
+                "category": "HARM_CATEGORY_HARASSMENT",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+                "category": "HARM_CATEGORY_HATE_SPEECH",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            }
+        ]
+        
+        response = genai_client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt
+        )
+        
+        # Return the answer and sources
+        return {
+            "answer": response.text,
+            "sources": sources
+        }
+    
+    except Exception as e:
+        logger.error(f"Error in search_with_gemini: {str(e)}")
+        raise

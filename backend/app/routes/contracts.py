@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import logging
 from app.services.scraper import ContractScraper
-from app.services.embeddings import generate_embeddings
+from app.services.embeddings import generate_embeddings, search_with_gemini
 
 # Optional: Import your vector embedding service
 # from app.services.embeddings import generate_embeddings
@@ -165,3 +165,25 @@ async def test_process_embeddings():
     """
     result = await process_contract_embeddings()
     return result
+
+@router.post("/search")
+async def search_contracts(query: str):
+    """
+    Search for contracts using a natural language query
+    
+    Args:
+        query: The search query
+        
+    Returns:
+        Dict: Response containing the answer and sources
+    """
+    try:
+        if not query or len(query.strip()) < 3:
+            raise HTTPException(status_code=400, detail="Query must be at least 3 characters long")
+        
+        result = await search_with_gemini(query)
+        return result
+    
+    except Exception as e:
+        logger.error(f"Error searching contracts: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
