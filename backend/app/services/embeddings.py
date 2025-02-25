@@ -12,7 +12,6 @@ pc = Pinecone(api_key=PINECONE_API_KEY)
 
 # Constants
 INDEX_NAME = "govwatch"
-EMBEDDING_DIMENSION = 1536  # Dimension for text-embedding-3-small
 
 def initialize_pinecone():
     """
