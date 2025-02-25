@@ -18,22 +18,7 @@ def initialize_pinecone():
     """
     Initialize Pinecone and create the index if it doesn't exist
     """
-    try:
-        # Check if our index already exists
-        if INDEX_NAME not in [index.name for index in pc.list_indexes()]:
-            logger.info(f"Creating new Pinecone index: {INDEX_NAME}")
-            
-            # Create a new index with OpenAI embedding model
-            pc.create_index(
-                name=INDEX_NAME,
-                dimension=EMBEDDING_DIMENSION,
-                metric="cosine",
-                spec=ServerlessSpec(cloud="aws", region="us-west-2")
-            )
-            logger.info(f"Successfully created index: {INDEX_NAME}")
-        else:
-            logger.info(f"Index {INDEX_NAME} already exists")
-            
+    try:            
         # Connect to the index
         index = pc.Index(INDEX_NAME)
         return index
