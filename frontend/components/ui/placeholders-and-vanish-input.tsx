@@ -9,10 +9,12 @@ export const PlaceholdersAndVanishInput = ({
   placeholders,
   onChange,
   onSubmit,
+  containerClassName = "w-full max-w-2xl items-center justify-center mx-auto"
 }: {
   placeholders: string[]
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  containerClassName?: string
 }) => {
   const [currentPlaceholder, setCurrentPlaceholder] = useState("")
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0)
@@ -55,7 +57,7 @@ export const PlaceholdersAndVanishInput = ({
   }, [currentCharIndex, currentPlaceholderIndex, isDeleting, placeholders])
 
   return (
-    <form onSubmit={onSubmit} className="relative flex w-full max-w-2xl items-center justify-center mx-auto">
+    <form onSubmit={onSubmit} className={`relative flex ${containerClassName}`}>
       <div className="flex w-full items-center gap-2">
         <input
           type="text"

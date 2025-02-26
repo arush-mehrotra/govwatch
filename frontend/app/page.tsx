@@ -74,7 +74,7 @@ export default function Home() {
     }, [searchValue])
 
     return (
-      <form onSubmit={handleSearchSubmit} className="relative flex w-full max-w-2xl items-center justify-center mx-auto">
+      <form onSubmit={handleSearchSubmit} className="relative flex w-full max-w-2xl">
         <div className="flex w-full items-center gap-2">
           <input
             ref={inputRef}
@@ -135,7 +135,7 @@ export default function Home() {
             <p className="mb-12 text-center text-xl text-muted-foreground">
               Ask questions in plain English about Department of Defense contracts and spending
             </p>
-            <div className="mx-auto flex flex-col items-center">
+            <div className="flex flex-col items-start">
               {/* Use either the animated placeholders or the custom search input */}
               {searchStream || isLoading || error ? (
                 <SearchInput />
@@ -144,6 +144,7 @@ export default function Home() {
                   placeholders={contractPlaceholders}
                   onChange={handleSearchChange}
                   onSubmit={handleSearchSubmit}
+                  containerClassName="w-full max-w-2xl" 
                 />
               )}
               
