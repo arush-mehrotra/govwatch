@@ -71,7 +71,7 @@ export default function Home() {
       if (searchValue && inputRef.current) {
         inputRef.current.focus()
       }
-    }, [searchValue])
+    }, [])
 
     return (
       <form onSubmit={handleSearchSubmit} className="relative flex w-full max-w-2xl">

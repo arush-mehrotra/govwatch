@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertCircle, Loader2, ExternalLink, Calendar, DollarSign, Building2, FileText, Tag } from "lucide-react"
+import { AlertCircle, Loader2, ExternalLink, Calendar, FileText, Tag } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 interface SearchResultsProps {
@@ -102,16 +102,6 @@ export function SearchResults({ stream, isLoading, error }: SearchResultsProps) 
       
       setParsedResult({ answer, sources });
     }
-  }
-
-  // Function to format contract amounts with highlighting
-  const formatContractAmount = (text: string) => {
-    return text.replace(
-      /\$[\d,]+(\.\d+)?[MBK]?/g,
-      match => (
-        <span className="text-green-500 font-bold">{match}</span>
-      )
-    );
   }
 
   // Render the answer with formatting
