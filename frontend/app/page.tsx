@@ -1,12 +1,15 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { BarChart3, Building2, DollarSign, FileText, Shield } from "lucide-react"
+import { Shield } from "lucide-react"
 import { useState } from "react"
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input"
 import Link from "next/link"
 import { ButtonAbout } from "@/components/ui/button-about"
+
+// Uncomment these imports if you re-enable the stats cards
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+// import { BarChart3, Building2, DollarSign, FileText } from "lucide-react"
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("")
@@ -32,9 +35,9 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background hero-pattern">
       <header className="border-b border-muted">
-        <div className="flex h-16 items-center justify-between px-8">
+        <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
             <Shield className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold glow text-primary">GovWatch</span>
@@ -48,28 +51,27 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="hero-pattern border-b border-muted py-20">
-          <div className="px-8">
-            <h1 className="heading-serif mb-2 text-center text-5xl font-normal text-primary">
+        <section className="py-24">
+          <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6 lg:px-8">
+            <h1 className="heading-serif mb-4 text-center text-6xl font-normal text-primary">
               Search DoD Contract Spending
             </h1>
-            <p className="mb-8 text-center text-lg text-muted-foreground">
+            <p className="mb-12 text-center text-xl text-muted-foreground">
               Ask questions in plain English about Department of Defense contracts and spending
             </p>
-            <div className="mx-auto flex max-w-2xl gap-2">
-              <div className="w-full">
-                <PlaceholdersAndVanishInput
-                  placeholders={contractPlaceholders}
-                  onChange={handleSearchChange}
-                  onSubmit={handleSearchSubmit}
-                />
-              </div>
+            <div className="mx-auto">
+              <PlaceholdersAndVanishInput
+                placeholders={contractPlaceholders}
+                onChange={handleSearchChange}
+                onSubmit={handleSearchSubmit}
+              />
             </div>
           </div>
         </section>
 
-        <section className="py-12">
-          <div className="px-8">
+        <section className="py-8 mb-16">
+          <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6 lg:px-8">
+            {/* Stats cards commented out since frontend is static
             <div className="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <Card className="bg-secondary/50 border-muted rounded-2xl">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -112,50 +114,51 @@ export default function Home() {
                 </CardContent>
               </Card>
             </div>
+            */}
 
-            <div className="rounded-2xl border border-muted bg-secondary/50 overflow-hidden">
-              <div className="border-b border-muted px-8 py-3">
-                <h2 className="font-semibold text-primary">Recent Large Contracts</h2>
+            <div className="mx-auto rounded-2xl border border-muted bg-secondary/30 overflow-hidden shadow-md card-glow">
+              <div className="border-b border-muted px-6 py-5 bg-secondary/60">
+                <h2 className="font-semibold text-primary text-xl">Recent Large Contracts</h2>
               </div>
-              <Table>
+              <Table className="border-collapse">
                 <TableHeader>
-                  <TableRow className="hover:bg-secondary/80">
-                    <TableHead className="text-muted-foreground">Contractor</TableHead>
-                    <TableHead className="text-muted-foreground">Description</TableHead>
-                    <TableHead className="text-muted-foreground">Date</TableHead>
-                    <TableHead className="text-right text-muted-foreground">Value</TableHead>
+                  <TableRow className="hover:bg-secondary/50">
+                    <TableHead className="text-muted-foreground font-medium py-4">Contractor</TableHead>
+                    <TableHead className="text-muted-foreground font-medium py-4">Description</TableHead>
+                    <TableHead className="text-muted-foreground font-medium py-4">Date</TableHead>
+                    <TableHead className="text-right text-muted-foreground font-medium py-4">Value</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow className="hover:bg-secondary/80">
-                    <TableCell className="font-medium text-primary">Lockheed Martin Corp.</TableCell>
-                    <TableCell>F-35 Lightning II Fighter Aircraft</TableCell>
-                    <TableCell>2024-02-15</TableCell>
-                    <TableCell className="text-right">$712M</TableCell>
+                  <TableRow className="hover:bg-secondary/50 border-t border-muted/20">
+                    <TableCell className="font-medium text-primary text-lg py-4">Lockheed Martin Corp.</TableCell>
+                    <TableCell className="text-foreground py-4">F-35 Lightning II Fighter Aircraft</TableCell>
+                    <TableCell className="text-muted-foreground py-4">2024-02-15</TableCell>
+                    <TableCell className="text-right font-bold text-primary py-4">$712M</TableCell>
                   </TableRow>
-                  <TableRow className="hover:bg-secondary/80">
-                    <TableCell className="font-medium text-primary">Boeing Defense</TableCell>
-                    <TableCell>CH-47F Chinook Helicopters</TableCell>
-                    <TableCell>2024-02-12</TableCell>
-                    <TableCell className="text-right">$543M</TableCell>
+                  <TableRow className="hover:bg-secondary/50 border-t border-muted/20">
+                    <TableCell className="font-medium text-primary text-lg py-4">Boeing Defense</TableCell>
+                    <TableCell className="text-foreground py-4">CH-47F Chinook Helicopters</TableCell>
+                    <TableCell className="text-muted-foreground py-4">2024-02-12</TableCell>
+                    <TableCell className="text-right font-bold text-primary py-4">$543M</TableCell>
                   </TableRow>
-                  <TableRow className="hover:bg-secondary/80">
-                    <TableCell className="font-medium text-primary">Raytheon Technologies</TableCell>
-                    <TableCell>Missile Defense Systems</TableCell>
-                    <TableCell>2024-02-10</TableCell>
-                    <TableCell className="text-right">$489M</TableCell>
+                  <TableRow className="hover:bg-secondary/50 border-t border-muted/20">
+                    <TableCell className="font-medium text-primary text-lg py-4">Raytheon Technologies</TableCell>
+                    <TableCell className="text-foreground py-4">Missile Defense Systems</TableCell>
+                    <TableCell className="text-muted-foreground py-4">2024-02-10</TableCell>
+                    <TableCell className="text-right font-bold text-primary py-4">$489M</TableCell>
                   </TableRow>
-                  <TableRow className="hover:bg-secondary/80">
-                    <TableCell className="font-medium text-primary">General Dynamics</TableCell>
-                    <TableCell>Combat Vehicle Upgrades</TableCell>
-                    <TableCell>2024-02-08</TableCell>
-                    <TableCell className="text-right">$367M</TableCell>
+                  <TableRow className="hover:bg-secondary/50 border-t border-muted/20">
+                    <TableCell className="font-medium text-primary text-lg py-4">General Dynamics</TableCell>
+                    <TableCell className="text-foreground py-4">Combat Vehicle Upgrades</TableCell>
+                    <TableCell className="text-muted-foreground py-4">2024-02-08</TableCell>
+                    <TableCell className="text-right font-bold text-primary py-4">$367M</TableCell>
                   </TableRow>
-                  <TableRow className="hover:bg-secondary/80">
-                    <TableCell className="font-medium text-primary">Northrop Grumman</TableCell>
-                    <TableCell>Surveillance Systems</TableCell>
-                    <TableCell>2024-02-05</TableCell>
-                    <TableCell className="text-right">$298M</TableCell>
+                  <TableRow className="hover:bg-secondary/50 border-t border-muted/20">
+                    <TableCell className="font-medium text-primary text-lg py-4">Northrop Grumman</TableCell>
+                    <TableCell className="text-foreground py-4">Surveillance Systems</TableCell>
+                    <TableCell className="text-muted-foreground py-4">2024-02-05</TableCell>
+                    <TableCell className="text-right font-bold text-primary py-4">$298M</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -165,7 +168,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-muted py-6">
-        <div className="px-8 text-center text-sm text-muted-foreground">
+        <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6 lg:px-8 text-center text-sm text-muted-foreground">
           GovWatch - Making Department of Defense spending transparent and accessible.
         </div>
       </footer>

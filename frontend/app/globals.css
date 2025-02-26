@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 225 15% 6%;
     --foreground: 214 32% 91%;
-    --card: 222 47% 11%;
+    --card: 225 15% 6%;
     --card-foreground: 214 32% 91%;
-    --popover: 222 47% 11%;
+    --popover: 225 15% 6%;
     --popover-foreground: 214 32% 91%;
     --primary: 143 72% 50%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 225 15% 6%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 214 32% 91%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 143 72% 50%;
-    --accent-foreground: 222 47% 11%;
+    --accent-foreground: 225 15% 6%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 17%;
@@ -41,20 +41,19 @@
 }
 
 .card-glow {
-  box-shadow: 0 0 20px hsl(var(--primary) / 0.1);
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.08), 0 0 20px hsl(var(--primary) / 0.05);
 }
 
 .hero-pattern {
-  background-image: radial-gradient(circle at center, hsl(var(--secondary)) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.07) 0.6px, transparent 0.6px);
   background-size: 24px 24px;
+  background-position: 0 0;
 }
 
 .heading-serif {
   font-family: var(--font-instrument-serif);
   letter-spacing: -0.02em;
 }
-
-
 
 @layer base {
   * {
