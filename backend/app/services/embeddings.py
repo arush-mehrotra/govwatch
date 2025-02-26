@@ -11,7 +11,11 @@ from fastapi.responses import StreamingResponse
 logger = logging.getLogger(__name__)
 
 # Initialize Pinecone
+logger.info(f"Pinecone client version: {Pinecone.__module__}")
 pc = Pinecone(api_key=PINECONE_API_KEY)
+
+# Try with environment parameter if needed
+# pc = Pinecone(api_key=PINECONE_API_KEY, environment="gcp-starter")
 
 # Initialize Gemini client
 genai_client = genai.Client(api_key=GEMINI_API_KEY)
@@ -26,6 +30,20 @@ def initialize_pinecone():
     Initialize Pinecone and connect to the index
     """
     try:
+        # Debug logging
+        logger.info(f"Initializing Pinecone with API key: {PINECONE_API_KEY[:5]}... (first 5 chars only)")
+        logger.info(f"Using index name: {INDEX_NAME}")
+        
+        # List available indexes
+        try:
+            indexes = pc.list_indexes()
+            logger.info(f"Available Pinecone indexes: {indexes}")
+            
+            if INDEX_NAME not in [idx.name for idx in indexes]:
+                logger.warning(f"Index '{INDEX_NAME}' not found in available indexes!")
+        except Exception as list_err:
+            logger.warning(f"Could not list indexes: {str(list_err)}")
+        
         # Connect to the index
         index = pc.Index(INDEX_NAME)
         return index

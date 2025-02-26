@@ -1,5 +1,5 @@
 // API service for GovWatch
-const API_BASE_URL = 'https://govwatch.onrender.com';
+const API_BASE_URL = 'http://localhost:8000';
 
 // Define source type to fix linter error
 interface Source {
@@ -19,12 +19,13 @@ export async function searchContractsStream(query: string): Promise<ReadableStre
   console.log(`Sending request to ${API_BASE_URL}/contracts/search with query:`, query);
   
   try {
-    const response = await fetch(`${API_BASE_URL}/contracts/search`, {
+    // Send query as a URL parameter instead of in the body
+    const response = await fetch(`${API_BASE_URL}/contracts/search?query=${encodeURIComponent(query)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query }),
+      // No body needed as we're using URL parameters
       // Don't specify mode: 'cors' to let the browser handle it
     });
 
@@ -81,12 +82,13 @@ export async function searchContracts(query: string): Promise<SearchResponse> {
   console.log(`Sending request to ${API_BASE_URL}/contracts/search with query:`, query);
   
   try {
-    const response = await fetch(`${API_BASE_URL}/contracts/search`, {
+    // Send query as a URL parameter instead of in the body
+    const response = await fetch(`${API_BASE_URL}/contracts/search?query=${encodeURIComponent(query)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query }),
+      // No body needed as we're using URL parameters
       // Don't specify mode: 'cors' to let the browser handle it
     });
 
