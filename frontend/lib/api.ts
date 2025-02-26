@@ -1,6 +1,19 @@
 // API service for GovWatch
 const API_BASE_URL = 'https://govwatch.onrender.com';
 
+// Define source type to fix linter error
+interface Source {
+  contract_url?: string;
+  date?: string;
+  section?: string;
+}
+
+// Define response type to fix linter error
+interface SearchResponse {
+  answer: string;
+  sources?: Source[];
+}
+
 // Function to search contracts with streaming response
 export async function searchContractsStream(query: string): Promise<ReadableStream<Uint8Array> | null> {
   console.log(`Sending request to ${API_BASE_URL}/contracts/search with query:`, query);
@@ -12,7 +25,7 @@ export async function searchContractsStream(query: string): Promise<ReadableStre
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
-      mode: 'cors',
+      // Don't specify mode: 'cors' to let the browser handle it
     });
 
     console.log('Search response status:', response.status);
@@ -24,7 +37,7 @@ export async function searchContractsStream(query: string): Promise<ReadableStre
     }
 
     // For non-streaming API, convert the response to a stream
-    const data = await response.json();
+    const data = await response.json() as SearchResponse;
     console.log('Search response data:', data);
     
     // Create a readable stream from the result
@@ -38,7 +51,7 @@ export async function searchContractsStream(query: string): Promise<ReadableStre
     let responseText = answer;
     if (data.sources && data.sources.length > 0) {
       responseText += "\n\n--- Sources ---\n";
-      data.sources.forEach((source: any, index: number) => {
+      data.sources.forEach((source: Source, index: number) => {
         responseText += `\n${index + 1}. ${source.contract_url || 'Unknown source'} (${source.date || 'Unknown date'})`;
         if (source.section) {
           responseText += ` - ${source.section}`;
@@ -64,7 +77,7 @@ export async function searchContractsStream(query: string): Promise<ReadableStre
 }
 
 // Function to search contracts with regular response
-export async function searchContracts(query: string): Promise<any> {
+export async function searchContracts(query: string): Promise<SearchResponse> {
   console.log(`Sending request to ${API_BASE_URL}/contracts/search with query:`, query);
   
   try {
@@ -74,7 +87,7 @@ export async function searchContracts(query: string): Promise<any> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
-      mode: 'cors',
+      // Don't specify mode: 'cors' to let the browser handle it
     });
 
     console.log('Search response status:', response.status);
@@ -85,7 +98,7 @@ export async function searchContracts(query: string): Promise<any> {
       throw new Error(`API error: ${response.status} - ${errorText}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as SearchResponse;
     console.log('Search response data:', data);
     return data;
   } catch (error) {
