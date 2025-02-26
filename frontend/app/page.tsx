@@ -1,11 +1,12 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { BarChart3, Building2, DollarSign, FileText, Search, Shield } from "lucide-react"
+import { BarChart3, Building2, DollarSign, FileText, Shield } from "lucide-react"
 import { useState } from "react"
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input"
+import Link from "next/link"
+import { ButtonAbout } from "@/components/ui/button-about"
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("")
@@ -39,9 +40,9 @@ export default function Home() {
             <span className="text-xl font-bold glow text-primary">GovWatch</span>
           </div>
           <nav className="flex gap-6">
-            <Button variant="ghost" className="rounded-full text-foreground hover:text-primary">
-              About
-            </Button>
+            <Link href="/about">
+              <ButtonAbout />
+            </Link>
           </nav>
         </div>
       </header>
