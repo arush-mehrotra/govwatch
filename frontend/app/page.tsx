@@ -2,7 +2,7 @@
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Shield, AlertTriangle } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input"
 import Link from "next/link"
 import { ButtonAbout } from "@/components/ui/button-about"
@@ -21,6 +21,7 @@ export default function Home() {
   const [searchStream, setSearchStream] = useState<ReadableStream<Uint8Array> | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   // DoD contracts-related placeholders
   const contractPlaceholders = [
@@ -50,11 +51,12 @@ export default function Home() {
       setSearchStream(stream);
     } catch (err) {
       console.error("Search failed:", err);
-      setError(err instanceof Error ? err.message : "An unknown error occurred");
       
-      // Show a more user-friendly error message
-      if (err instanceof Error && err.message.includes("Failed to fetch")) {
-        setError("Could not connect to the search service. Please check your internet connection or try again later.");
+      // Show a more specific and user-friendly error message
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred while searching");
       }
     } finally {
       setIsLoading(false)
@@ -62,32 +64,46 @@ export default function Home() {
   }
 
   // Custom search input with button
-  const SearchInput = () => (
-    <form onSubmit={handleSearchSubmit} className="relative flex w-full max-w-2xl items-center gap-2">
-      <input
-        type="text"
-        value={searchValue}
-        onChange={handleSearchChange}
-        placeholder={contractPlaceholders[0]}
-        className="h-12 w-full rounded-full border border-muted bg-secondary/50 px-4 text-lg text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/20"
-      />
-      <ButtonSearch isLoading={isLoading} />
-    </form>
-  )
+  const SearchInput = () => {
+    // Maintain focus after re-render
+    useEffect(() => {
+      // Don't auto-focus on initial render
+      if (searchValue && inputRef.current) {
+        inputRef.current.focus()
+      }
+    }, [searchValue])
+
+    return (
+      <form onSubmit={handleSearchSubmit} className="relative flex w-full max-w-2xl items-center justify-center mx-auto">
+        <div className="flex w-full items-center gap-2">
+          <input
+            ref={inputRef}
+            type="text"
+            value={searchValue}
+            onChange={handleSearchChange}
+            placeholder={contractPlaceholders[0]}
+            className="h-12 w-full rounded-full border border-muted bg-secondary/50 px-4 text-lg text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/20"
+            autoComplete="off"
+          />
+          <ButtonSearch isLoading={isLoading} />
+        </div>
+      </form>
+    )
+  }
 
   // Network status warning
   const NetworkWarning = () => {
     if (!error || !error.includes("connect")) return null;
     
     return (
-      <Card className="bg-amber-500/10 border-amber-500/30 rounded-2xl mt-4 mb-8">
+      <Card className="bg-amber-500/10 border-amber-500/30 rounded-2xl mt-4 w-full">
         <CardHeader className="pb-2 flex flex-row items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-amber-500" />
           <CardTitle className="text-amber-500 text-sm">Connection Issue</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-amber-400/90">
-            There seems to be an issue connecting to the backend service. The service might be temporarily unavailable or there could be network connectivity issues.
+            There seems to be an issue connecting to the backend service. The service might be temporarily unavailable, CORS policies might be blocking the request, or there could be network connectivity issues.
           </p>
         </CardContent>
       </Card>
@@ -119,8 +135,7 @@ export default function Home() {
             <p className="mb-12 text-center text-xl text-muted-foreground">
               Ask questions in plain English about Department of Defense contracts and spending
             </p>
-            <div className="mx-auto">
-              <NetworkWarning />
+            <div className="mx-auto flex flex-col items-center">
               {/* Use either the animated placeholders or the custom search input */}
               {searchStream || isLoading || error ? (
                 <SearchInput />
@@ -131,10 +146,15 @@ export default function Home() {
                   onSubmit={handleSearchSubmit}
                 />
               )}
+              
+              {/* Show network warning if there's a connection error */}
+              {error && error.includes("connect") && <NetworkWarning />}
+              
+              {/* Only show error in SearchResults if it's not a connection error */}
               <SearchResults 
                 stream={searchStream}
                 isLoading={isLoading}
-                error={error}
+                error={error && !error.includes("connect") ? error : null}
               />
             </div>
           </div>

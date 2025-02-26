@@ -52,6 +52,13 @@ export async function searchContractsStream(query: string): Promise<ReadableStre
     return readable;
   } catch (error) {
     console.error('Error searching contracts:', error);
+    
+    // Enhanced error handling with specific messages
+    if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+      throw new Error('Could not connect to the search service. The backend might be unavailable or CORS might be blocking the request.');
+    }
+    
+    // For other errors, rethrow
     throw error;
   }
 }
@@ -83,6 +90,13 @@ export async function searchContracts(query: string): Promise<any> {
     return data;
   } catch (error) {
     console.error('Error searching contracts:', error);
+    
+    // Enhanced error handling with specific messages
+    if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+      throw new Error('Could not connect to the search service. The backend might be unavailable or CORS might be blocking the request.');
+    }
+    
+    // For other errors, rethrow
     throw error;
   }
 } 
