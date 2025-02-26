@@ -8,6 +8,7 @@ import Link from "next/link"
 import { ButtonAbout } from "@/components/ui/button-about"
 
 // Uncomment these imports if you re-enable the stats cards
+// import { Button } from "@/components/ui/button"
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 // import { BarChart3, Building2, DollarSign, FileText } from "lucide-react"
 
