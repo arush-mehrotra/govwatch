@@ -1,5 +1,5 @@
 // API service for GovWatch
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'https://govwatch.onrender.com';
 
 // Define source type to fix linter error
 interface Source {
