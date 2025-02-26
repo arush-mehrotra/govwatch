@@ -18,21 +18,6 @@ router = APIRouter(
 
 logger = logging.getLogger(__name__)
 
-@router.post("/cron/weekly-embeddings")
-async def weekly_contract_embeddings():
-    """
-    Endpoint for CRON job to trigger weekly contract embedding generation
-    This should be secured in production with API keys or other authentication
-    """
-    try:
-        # Run the embedding process directly (not as a background task)
-        # since this is called by a CRON job that can wait for completion
-        result = await process_contract_embeddings()
-        return {"message": "Weekly contract embeddings processed", "result": result}
-    except Exception as e:
-        logger.error(f"Error in weekly contract embeddings: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
 async def process_contract_embeddings():
     """
     Process contracts and generate embeddings
