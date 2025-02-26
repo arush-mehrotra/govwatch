@@ -1,14 +1,15 @@
 import * as React from "react"
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Search } from "lucide-react"
+import { Search, Loader2 } from "lucide-react"
 
 interface ButtonSearchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     label?: string;
     className?: string;
+    isLoading?: boolean;
 }
 
-function ButtonSearch({ label = "Search", className, ...props }: ButtonSearchProps) {
+function ButtonSearch({ label = "Search", className, isLoading = false, ...props }: ButtonSearchProps) {
     return (
         <Button
             type="submit"
@@ -17,6 +18,7 @@ function ButtonSearch({ label = "Search", className, ...props }: ButtonSearchPro
                 "group relative h-12 px-8 rounded-full overflow-hidden transition-all duration-500",
                 className
             )}
+            disabled={isLoading}
             {...props}
         >
             <div className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-b from-[#4ade80] via-[#22c55e] to-[#16a34a]">
@@ -32,9 +34,13 @@ function ButtonSearch({ label = "Search", className, ...props }: ButtonSearchPro
             <div className="absolute inset-[1px] shadow-[inset_0_0_15px_rgba(74,222,128,0.15)] rounded-full" />
 
             <div className="relative flex items-center justify-center gap-2">
-                <Search className="h-5 w-5 text-[#4ade80]" />
+                {isLoading ? (
+                    <Loader2 className="h-5 w-5 text-[#4ade80] animate-spin" />
+                ) : (
+                    <Search className="h-5 w-5 text-[#4ade80]" />
+                )}
                 <span className="text-sm font-medium bg-gradient-to-b from-[#4ade80] to-[#22c55e] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(74,222,128,0.4)]">
-                    {label}
+                    {isLoading ? "Searching..." : label}
                 </span>
             </div>
 
