@@ -8,7 +8,7 @@ import os
 app = FastAPI(title="Government Watch API")
 
 # Get allowed origins from environment or use defaults
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://govwatch.xyz")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://govwatch.xyz")
 # Add additional domains as needed
 allowed_origins = [
     FRONTEND_URL,
