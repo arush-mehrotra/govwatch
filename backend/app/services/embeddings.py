@@ -1,10 +1,11 @@
 import logging
 import json
-from typing import Dict, List, Any
+from typing import Dict, List, Any, AsyncGenerator
 from pinecone.grpc import PineconeGRPC as Pinecone
 from app.config import PINECONE_API_KEY, GEMINI_API_KEY
 from google import genai
 from google.genai import types
+from fastapi.responses import StreamingResponse
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -284,3 +285,114 @@ async def search_with_gemini(query: str, top_k: int = 5):
     except Exception as e:
         logger.error(f"Error in search_with_gemini: {str(e)}")
         raise
+
+async def search_with_gemini_stream(query: str, top_k: int = 5) -> AsyncGenerator[str, None]:
+    """
+    Search for contracts using a natural language query and generate a streaming response using Gemini
+    
+    Args:
+        query: The natural language search query
+        top_k: Number of results to retrieve from Pinecone
+        
+    Returns:
+        AsyncGenerator: Streaming response from Gemini
+    """
+    try:
+        # Initialize Pinecone
+        index = initialize_pinecone()
+        
+        # Generate embedding for the query using Gemini
+        query_embedding = await generate_gemini_embedding(query)
+        
+        # Search in Pinecone
+        search_response = index.query(
+            vector=query_embedding,
+            top_k=top_k,
+            namespace="contracts",  # Using the single namespace we defined
+            include_metadata=True
+        )
+        
+        # Extract relevant context from search results
+        contexts = []
+        sources = []
+        
+        for match in search_response.matches:
+            # Add the text as context
+            context_text = match.metadata.get("text", "")
+            if context_text:
+                contexts.append(context_text)
+            
+            # Add source information
+            sources.append({
+                "score": match.score,
+                "contract_url": match.metadata.get("contract_url", ""),
+                "date": match.metadata.get("date", ""),
+                "section": match.metadata.get("section", "")
+            })
+        
+        # If no contexts found, yield a message and return
+        if not contexts:
+            yield "I couldn't find any relevant information about your query in the contracts database."
+            return
+        
+        # Combine contexts into a single string
+        combined_context = "\n\n".join(contexts)
+        
+        # Prepare prompt for Gemini
+        prompt = f"""
+        You are an AI assistant specialized in analyzing Department of Defense contracts.
+        
+        USER QUERY: {query}
+        
+        RELEVANT CONTRACT INFORMATION:
+        {combined_context}
+        
+        Based ONLY on the information provided above, please answer the user's query.
+        If the information doesn't contain an answer to the query, say so clearly.
+        Include specific details from the contracts when relevant.
+        """
+        
+        # Generate streaming response using Gemini
+        generation_config = {
+            "temperature": 0.2,
+            "top_p": 0.8,
+            "top_k": 40,
+            "max_output_tokens": 1024,
+        }
+        
+        safety_settings = [
+            {
+                "category": "HARM_CATEGORY_HARASSMENT",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+                "category": "HARM_CATEGORY_HATE_SPEECH",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+            }
+        ]
+        
+        # Use the streaming version of generate_content
+        response_stream = genai_client.models.generate_content_stream(
+            model="gemini-2.0-flash",
+            contents=prompt,
+            generation_config=generation_config,
+            safety_settings=safety_settings
+        )
+        
+        # Stream the response chunks
+        for chunk in response_stream:
+            if chunk.text:
+                yield chunk.text
+    
+    except Exception as e:
+        error_msg = f"Error in search_with_gemini_stream: {str(e)}"
+        logger.error(error_msg)
+        yield f"Error: {error_msg}"
