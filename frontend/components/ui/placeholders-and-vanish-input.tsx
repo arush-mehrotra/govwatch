@@ -9,10 +9,12 @@ export const PlaceholdersAndVanishInput = ({
   placeholders,
   onChange,
   onSubmit,
+  containerClassName = "w-full max-w-2xl items-center justify-center mx-auto"
 }: {
   placeholders: string[]
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  containerClassName?: string
 }) => {
   const [currentPlaceholder, setCurrentPlaceholder] = useState("")
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0)
@@ -55,14 +57,17 @@ export const PlaceholdersAndVanishInput = ({
   }, [currentCharIndex, currentPlaceholderIndex, isDeleting, placeholders])
 
   return (
-    <form onSubmit={onSubmit} className="relative flex w-full max-w-2xl items-center gap-2">
-      <input
-        type="text"
-        onChange={onChange}
-        placeholder={currentPlaceholder}
-        className="h-12 w-full rounded-full border border-muted bg-secondary/50 px-4 text-lg text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/20"
-      />
-      <ButtonSearch />
+    <form onSubmit={onSubmit} className={`relative flex ${containerClassName}`}>
+      <div className="flex w-full items-center gap-2">
+        <input
+          type="text"
+          onChange={onChange}
+          placeholder={currentPlaceholder}
+          className="h-12 w-full rounded-full border border-muted bg-secondary/50 px-4 text-lg text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/20"
+          autoComplete="off"
+        />
+        <ButtonSearch />
+      </div>
     </form>
   )
 }
