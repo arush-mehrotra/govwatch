@@ -3,16 +3,25 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routes import contracts
 from app.config import setup_logging
 import uvicorn
+import os
 
 app = FastAPI(title="Government Watch API")
 
-# Add CORS middleware
+# Get allowed origins from environment or use defaults
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://govwatch.xyz")
+# Add additional domains as needed
+allowed_origins = [
+    FRONTEND_URL,
+    "https://govwatch.example.com",
+]
+
+# Add CORS middleware with restricted origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=allowed_origins,  # Specific origins only
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],  # Restrict to needed methods
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 app.include_router(contracts.router)
