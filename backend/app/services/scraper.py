@@ -37,9 +37,17 @@ class ContractScraper:
         if not self.url:
             print("No URL provided")
             return False
+        
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+        }
             
         try:
-            response = requests.get(self.url)
+            response = requests.get(self.url, headers=headers)
             if response.status_code != 200:
                 print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
                 return False
@@ -65,12 +73,31 @@ class ContractScraper:
             return "Unknown Date"
         
         title_text = maintitle.get_text(strip=True)
-        # Convert "Contracts For Feb. 24, 2025" to "2025-02-24"
+        # Convert date formats like "Contracts For Feb. 24, 2025" or "Contracts For March 14, 2025" to "2025-02-24"
         try:
             from datetime import datetime
             date_str = title_text.replace("Contracts For ", "")
-            parsed_date = datetime.strptime(date_str, "%b. %d, %Y")
-            return parsed_date.strftime("%Y-%m-%d")
+            
+            # Try different date formats
+            date_formats = [
+                "%b. %d, %Y",  # For "Feb. 24, 2025"
+                "%B %d, %Y",   # For "March 14, 2025"
+                "%b %d, %Y",   # For "Feb 24, 2025" (no period)
+                "%d %b %Y",    # For "24 Feb 2025" 
+                "%d %B %Y"     # For "14 March 2025"
+            ]
+            
+            for date_format in date_formats:
+                try:
+                    parsed_date = datetime.strptime(date_str, date_format)
+                    return parsed_date.strftime("%Y-%m-%d")
+                except ValueError:
+                    continue
+            
+            # If we get here, none of the formats matched
+            print(f"Could not parse date from: {date_str}")
+            return "Unknown Date"
+            
         except Exception as e:
             print(f"Error parsing date: {str(e)}")
             return "Unknown Date"
