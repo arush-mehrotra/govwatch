@@ -66,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 The frontend is designed to connect to our FastAPI backend. To connect to the backend:
 
-1. The backend API is hosted at `api.govwatch.xyz` in production
+1. The backend API is hosted at `https://govwatch.onrender.com` in production
 2. For local development, the backend should be running at `http://localhost:8000`
 
 To configure the API endpoint, you can set the `NEXT_PUBLIC_API_URL` environment variable:
@@ -76,7 +76,7 @@ To configure the API endpoint, you can set the `NEXT_PUBLIC_API_URL` environment
 NEXT_PUBLIC_API_URL=http://localhost:8000
 
 # For production
-NEXT_PUBLIC_API_URL=api.govwatch.xyz
+NEXT_PUBLIC_API_URL=https://govwatch.onrender.com
 ```
 
 ## API Integration
