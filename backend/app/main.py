@@ -12,7 +12,7 @@ FRONTEND_URL = os.getenv("FRONTEND_URL", "https://govwatch.xyz")
 # Add additional domains as needed
 allowed_origins = [
     FRONTEND_URL,
-    "https://govwatch.example.com",
+    "https://govwatch.vercel.app",
 ]
 
 # Add CORS middleware with restricted origins
