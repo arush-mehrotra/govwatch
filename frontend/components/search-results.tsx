@@ -106,48 +106,31 @@ export function SearchResults({ stream, isLoading, error }: SearchResultsProps) 
 
   // Render the answer with formatting
   const renderAnswer = (answer: string) => {
-    // Split by paragraphs
-    const paragraphs = answer.split('\n\n').filter(p => p.trim() !== '');
-    
-    return (
-      <div className="space-y-5">
-        {paragraphs.map((paragraph, idx) => {
-          // Check if it's a bullet point list
-          if (paragraph.includes('* ')) {
-            const items = paragraph.split('* ').filter(item => item.trim() !== '');
-            return (
-              <ul key={idx} className="space-y-4 list-none">
-                {items.map((item, itemIdx) => (
-                  <li key={itemIdx} className="pl-4 border-l-2 border-primary/20 py-2 hover:border-primary/50 transition-colors">
-                    <div dangerouslySetInnerHTML={{ 
-                      __html: item
-                        .replace(/\*\*([^*]+)\*\*/g, '<span class="font-semibold text-primary">$1</span>')
-                        .replace(/\$[\d,]+(\.\d+)?[MBK]?/g, '<span class="text-emerald-500 font-medium">$&</span>')
-                        .replace(/\b\d{4}-\d{2}-\d{2}\b/g, '<span class="text-blue-400">$&</span>')
-                        .replace(/"text-green-400 font-bold">/g, '"text-emerald-500 font-medium">')
-                        .replace(/"text-blue-400">/g, '"text-blue-400">')
-                    }} />
-                  </li>
-                ))}
-              </ul>
-            );
-          } else {
-            // Regular paragraph
-            return (
-              <p key={idx} className="leading-relaxed text-foreground/90" dangerouslySetInnerHTML={{ 
-                __html: paragraph
-                  .replace(/\*\*([^*]+)\*\*/g, '<span class="font-semibold text-primary">$1</span>')
-                  .replace(/\$[\d,]+(\.\d+)?[MBK]?/g, '<span class="text-emerald-500 font-medium">$&</span>')
-                  .replace(/\b\d{4}-\d{2}-\d{2}\b/g, '<span class="text-blue-400">$&</span>')
-                  .replace(/"text-green-400 font-bold">/g, '"text-emerald-500 font-medium">')
-                  .replace(/"text-blue-400">/g, '"text-blue-400">')
-              }} />
-            );
-          }
-        })}
-      </div>
-    );
-  }
+    // Split the answer into paragraphs
+    const paragraphs = answer.split('\n\n').filter(p => p.trim());
+
+    return paragraphs.map((paragraph, index) => {
+      // Check if this is a numbered list item
+      const isListItem = /^\d+\./.test(paragraph.trim());
+      
+      // Process the paragraph content
+      const processedText = paragraph
+        .replace(/\*\*([^*]+)\*\*/g, '<span class="font-semibold text-primary">$1</span>')
+        .replace(/\$[\d,]+(\.\d+)?[MBK]?/g, '<span class="text-emerald-500 font-medium">$&</span>');
+
+      return (
+        <div 
+          key={index} 
+          className={`mb-4 ${isListItem ? 'pl-4' : ''}`}
+        >
+          <div 
+            className="prose prose-sm max-w-none"
+            dangerouslySetInnerHTML={{ __html: processedText }}
+          />
+        </div>
+      );
+    });
+  };
 
   if (error || streamError) {
     return (

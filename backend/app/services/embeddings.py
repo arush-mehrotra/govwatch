@@ -259,21 +259,25 @@ async def search_with_gemini(query: str, top_k: int = 5):
         
         Based ONLY on the information provided above, please answer the user's query.
         Format your response using these EXACT rules:
-        - Use complete pairs of double asterisks for bold text
-        - Use plain dollar signs without escaping
-        - Use proper numbered lists with a blank line between each item
-        - Format each contract exactly like this example:
+        
+        1. Use complete pairs of double asterisks for bold text
+        2. Use plain dollar signs without escaping
+        3. Use proper numbered lists with a blank line between each item
+        4. Format each contract exactly like this example:
 
         1. **Company Name, Location:**
-        $100,000 for project description...
+           $100,000 for project description...
 
         2. **Another Company, Location:**
-        $200,000 for another project...
+           $200,000 for another project...
 
         Make sure there is:
         - A blank line between each numbered item
+        - Three spaces of indentation before the dollar amount line
         - No backslashes before dollar signs
         - Complete sentences that don't run on
+        - No extra line breaks within contract descriptions
+        - Proper punctuation at the end of each description
 
         If the information doesn't contain an answer to the query, say so clearly.
         """
