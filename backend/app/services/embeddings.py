@@ -258,11 +258,15 @@ async def search_with_gemini(query: str, top_k: int = 5):
         {combined_context}
         
         Based ONLY on the information provided above, please answer the user's query.
-        Format your response using proper markdown:
+        Format your response using these exact rules:
         - Use complete pairs of double asterisks for bold text (e.g., **Company Name**)
-        - Ensure all asterisks are properly closed
+        - Use plain dollar signs without escaping (e.g., $100,000 not \$100,000)
         - Use proper numbered lists (1., 2., etc.)
-        - Format dollar amounts consistently
+        - Format company names as: **Company Name, Location:**
+        
+        Example format:
+        1. **Company Name, Location:**
+        $100,000 for project description...
         
         If the information doesn't contain an answer to the query, say so clearly.
         Include specific details from the contracts when relevant.
@@ -372,11 +376,15 @@ async def search_with_gemini_stream(query: str, top_k: int = 5) -> AsyncGenerato
         {combined_context}
         
         Based ONLY on the information provided above, please answer the user's query.
-        Format your response using proper markdown:
+        Format your response using these exact rules:
         - Use complete pairs of double asterisks for bold text (e.g., **Company Name**)
-        - Ensure all asterisks are properly closed
+        - Use plain dollar signs without escaping (e.g., $100,000 not \$100,000)
         - Use proper numbered lists (1., 2., etc.)
-        - Format dollar amounts consistently
+        - Format company names as: **Company Name, Location:**
+        
+        Example format:
+        1. **Company Name, Location:**
+        $100,000 for project description...
         
         If the information doesn't contain an answer to the query, say so clearly.
         Include specific details from the contracts when relevant.
