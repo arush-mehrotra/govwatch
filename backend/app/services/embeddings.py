@@ -258,6 +258,12 @@ async def search_with_gemini(query: str, top_k: int = 5):
         {combined_context}
         
         Based ONLY on the information provided above, please answer the user's query.
+        Format your response using proper markdown:
+        - Use complete pairs of double asterisks for bold text (e.g., **Company Name**)
+        - Ensure all asterisks are properly closed
+        - Use proper numbered lists (1., 2., etc.)
+        - Format dollar amounts consistently
+        
         If the information doesn't contain an answer to the query, say so clearly.
         Include specific details from the contracts when relevant.
         """
@@ -366,6 +372,12 @@ async def search_with_gemini_stream(query: str, top_k: int = 5) -> AsyncGenerato
         {combined_context}
         
         Based ONLY on the information provided above, please answer the user's query.
+        Format your response using proper markdown:
+        - Use complete pairs of double asterisks for bold text (e.g., **Company Name**)
+        - Ensure all asterisks are properly closed
+        - Use proper numbered lists (1., 2., etc.)
+        - Format dollar amounts consistently
+        
         If the information doesn't contain an answer to the query, say so clearly.
         Include specific details from the contracts when relevant.
         """
