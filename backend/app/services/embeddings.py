@@ -258,18 +258,24 @@ async def search_with_gemini(query: str, top_k: int = 5):
         {combined_context}
         
         Based ONLY on the information provided above, please answer the user's query.
-        Format your response using these exact rules:
-        - Use complete pairs of double asterisks for bold text (e.g., **Company Name**)
-        - Use plain dollar signs without escaping (e.g., $100,000 not \$100,000)
-        - Use proper numbered lists (1., 2., etc.)
-        - Format company names as: **Company Name, Location:**
-        
-        Example format:
+        Format your response using these EXACT rules:
+        - Use complete pairs of double asterisks for bold text
+        - Use plain dollar signs without escaping
+        - Use proper numbered lists with a blank line between each item
+        - Format each contract exactly like this example:
+
         1. **Company Name, Location:**
         $100,000 for project description...
-        
+
+        2. **Another Company, Location:**
+        $200,000 for another project...
+
+        Make sure there is:
+        - A blank line between each numbered item
+        - No backslashes before dollar signs
+        - Complete sentences that don't run on
+
         If the information doesn't contain an answer to the query, say so clearly.
-        Include specific details from the contracts when relevant.
         """
         
         # Generate response using Gemini
@@ -376,18 +382,24 @@ async def search_with_gemini_stream(query: str, top_k: int = 5) -> AsyncGenerato
         {combined_context}
         
         Based ONLY on the information provided above, please answer the user's query.
-        Format your response using these exact rules:
-        - Use complete pairs of double asterisks for bold text (e.g., **Company Name**)
-        - Use plain dollar signs without escaping (e.g., $100,000 not \$100,000)
-        - Use proper numbered lists (1., 2., etc.)
-        - Format company names as: **Company Name, Location:**
-        
-        Example format:
+        Format your response using these EXACT rules:
+        - Use complete pairs of double asterisks for bold text
+        - Use plain dollar signs without escaping
+        - Use proper numbered lists with a blank line between each item
+        - Format each contract exactly like this example:
+
         1. **Company Name, Location:**
         $100,000 for project description...
-        
+
+        2. **Another Company, Location:**
+        $200,000 for another project...
+
+        Make sure there is:
+        - A blank line between each numbered item
+        - No backslashes before dollar signs
+        - Complete sentences that don't run on
+
         If the information doesn't contain an answer to the query, say so clearly.
-        Include specific details from the contracts when relevant.
         """
         
         # Generate streaming response using Gemini
