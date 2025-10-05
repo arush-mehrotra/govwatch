@@ -143,7 +143,7 @@ export function SearchResults({ stream, isLoading, error }: SearchResultsProps) 
           <p className="text-red-400">{error || streamError}</p>
           <p className="text-muted-foreground mt-2 text-sm">
             Try refreshing the page or checking your network connection. 
-            If the problem persists, the backend service might be unavailable.
+            If the problem persists, the backend service might be unavailable due to inactivity.
           </p>
         </CardContent>
       </Card>
